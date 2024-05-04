@@ -3,8 +3,9 @@
 import React from 'react'
 import { Button } from './ui/button'
 import { supbaseBrowswer } from '@/lib/supabase/browser'
+import { User } from '@supabase/supabase-js';
 
-export default function ChatHeader() {
+export default function ChatHeader({user}:{user:User | undefined}) {
  
     const handleLoginWithGithub = () => {
 
@@ -31,7 +32,12 @@ export default function ChatHeader() {
                 <h1 className="text-sm text-gray-400">1 Online</h1>
               </div>
             </div>
-            <Button onClick={handleLoginWithGithub}>Login</Button>
+            {user ? (<Button onClick={handleLoginWithGithub}>Login</Button>
+            ) : (
+              <Button onClick={handleLoginWithGithub}>Logout</Button>
+            )}
+            
+            
           </div>
         </div>
   )
